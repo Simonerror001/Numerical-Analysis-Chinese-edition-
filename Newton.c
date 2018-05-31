@@ -1,6 +1,6 @@
 /*
-Å£¶Ù²åÖµ : CÓïÑÔ
-Created on Mar 11, 2018
+ç‰›é¡¿æ’å€¼ : Cè¯­è¨€
+Created on Mar 11 2018
 @author: Wang Yufei
 */
 
@@ -10,36 +10,36 @@ Created on Mar 11, 2018
 int main()
 {
 	int num;
-	printf("ÇëÊäÈë²åÖµµãµÄ¸öÊı£º");
+	printf("è¯·è¾“å…¥æ’å€¼ç‚¹çš„ä¸ªæ•°ï¼š");
 	scanf("%d", &num);
 	double *x, **y;
-	x = (double *)malloc(sizeof(double) * num);         //·ÖÅäÄÚ´æ
-	y = (double **)malloc(sizeof(double*) * num);       //×¢ÒâÊÇ¶şÎ¬Êı×é
+	x = (double *)malloc(sizeof(double) * num);         //åˆ†é…å†…å­˜
+	y = (double **)malloc(sizeof(double*) * num);       //æ³¨æ„æ˜¯äºŒç»´æ•°ç»„
 	for (int i = 0; i < num; i++)
 		y[i] = (double *)malloc(sizeof(double) * num);
 
-	for (int i = 0; i < num; i++) {                     //²åÖµµãµÄÊäÈë
-		printf("ÇëÊäÈëµÚ%d¸öµãµÄ×ø±ê£¬¿Õ¸ñ¸ô¿ª£º\n", i + 1);
+	for (int i = 0; i < num; i++) {                     //æ’å€¼ç‚¹çš„è¾“å…¥
+		printf("è¯·è¾“å…¥ç¬¬%dä¸ªç‚¹çš„åæ ‡ï¼Œç©ºæ ¼éš”å¼€ï¼š\n", i + 1);
 		scanf("%lf %lf", &x[i], &y[0][i]);
 	}
 	double x0;
-	printf("ÇëÊäÈëÒª¼ÆËãµÄxµÄÖµ£º");
+	printf("è¯·è¾“å…¥è¦è®¡ç®—çš„xçš„å€¼ï¼š");
 	scanf("%lf", &x0);
 
-	double sum = y[0][0];                         //²åÖµ¼ÆËã
+	double sum = y[0][0];                         //æ’å€¼è®¡ç®—
 	double x_xi = x0 - x[0];
 	for (int i = 1; i < num; i++) {
 		for (int j = 0; j < num - i; j++) {
-			double a1 = x[j];                     //Ê¹ÓÃµİÍÆ·½·¨Çó½â²åÖµ
-			double a2 = x[i + j];                   //i+j»ñÈ¡¸±¶Ô½ÇÏßÔªËØÏÂ±ê
+			double a1 = x[j];                     //ä½¿ç”¨é€’æ¨æ–¹æ³•æ±‚è§£æ’å€¼
+			double a2 = x[i + j];                   //i+jè·å–å‰¯å¯¹è§’çº¿å…ƒç´ ä¸‹æ ‡
 			y[i][j] = (y[i - 1][j + 1] - y[i - 1][j]) / (a2 - a1);
 		}
 		sum += y[i][0] * x_xi;
 		x_xi *= (x0 - x[i]);
 	}
-	printf("\nÀûÓÃÅ£¶Ù²åÖµ·¨µÃµ½µÄ½á¹ûÊÇ£º%lf\n", sum);
+	printf("\nåˆ©ç”¨ç‰›é¡¿æ’å€¼æ³•å¾—åˆ°çš„ç»“æœæ˜¯ï¼š%lf\n", sum);
 
-	for (int i = 0; i < num; i++)                 //ÊÍ·ÅÄÚ´æ
+	for (int i = 0; i < num; i++)                 //é‡Šæ”¾å†…å­˜
 		free(y[i]);
 	free(y);
 	free(x);
